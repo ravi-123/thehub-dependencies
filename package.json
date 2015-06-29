@@ -1,0 +1,33 @@
+{
+  "name": "thehub-deploy",
+  "version": "0.0.1",
+  "description": "Creates The deployment folder",
+  "homepage": "https://github.com/cyb-ashishku/thehub-deploy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cyb-ashishku/thehub-deploy.git"
+  },
+  "author": {
+    "name": "Ashish Kumar",
+    "email": "ashish.kvarma@gmail.com"
+  },
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "~0.8.0",
+    "jshint-stylish": "~0.1.5",
+    "load-grunt-tasks": "~0.3.0"
+  },
+  "peerDependencies": {
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-shell": "^1.1.2",
+    "grunt-text-replace": "^0.4.0"
+  },
+  "dependencies": {
+    "lodash": "^3.7.0"
+  }
+}
