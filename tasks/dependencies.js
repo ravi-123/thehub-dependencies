@@ -17,7 +17,8 @@ module.exports = function (grunt) {
 
   grunt.registerMultiTask('dependencies', 'Copy dependent folders (using contrib-copy) and then build them.', function () {
     var config = {
-      copy: {}
+      copy: {},
+      replace: {}
     };
     var target = this.target || 'dev';
     var copyTask = 'copy_dependencies-' + target;
@@ -29,24 +30,17 @@ module.exports = function (grunt) {
       projects: []
     }), this.data);
 
-    var ignoreFolderRegex = /[\/\\](?:node_modules|dependencies|deploy|obj)[\/\\]?/;
-    var ignoreFileExtRegex = /\.(?:csproj|vspscc|config)$/;
-
     _.each(options.projects, function (prj) {
       readDepndencies(projects, prj, target);
     });
 
-    _.each(_.keys(projects), function (prj) {
-      file.dest = 'build/dependencies';
+    _.each(projects, function (prj) {
       copyFiles.push({
         expand: true,
-        cwd: '../../' + prj + '/deploy/',
+        cwd: projectDeployPath(prj),
         src: '**',
         dot: true,
-        dest: path.join('dependencies/', prj),
-        filter: function (filepath) {
-          return !(ignoreFolderRegex.exec(filepath) || ignoreFileExtRegex.exec(filepath));
-        }
+        dest: path.join('dependencies/', prj.project)
       });
     });
 
@@ -72,15 +66,27 @@ module.exports = function (grunt) {
   });
 
   function readDepndencies(projects, prj, target) {
-    if (!projects[prj]) {
-      projects[prj] = true;
+    var prjKey = projectKey(projects, prj);
+    if (!projects[prjKey]) {
+      projects[prjKey] = prj;
 
-      if (grunt.file.isFile('../../', prj, 'grunt', target, 'dependencies.json')) {
-        var dependencies = grunt.file.readJSON(path.join('../../', prj, 'grunt', target, 'dependencies.json'));
+      var depndsPath = projectDependenciesPath(prj, target);
+      if (grunt.file.isFile(depndsPath)) {
+        var dependencies = grunt.file.readJSON(depndsPath);
         _.each(dependencies.projects, function (p) {
           readDepndencies(projects, p, target);
         });
       }
     }
+  }
+
+  function projectDeployPath(prj) {
+    return path.join('..', '..', prj.solution, prj.project, 'deploy', prj.project);
+  }
+  function projectDependenciesPath(prj, target) {
+    return path.join('..', '..', prj.solution, prj.project, 'grunt', target, 'dependencies.json');
+  }
+  function projectKey(projects, prj) {
+    return  prj.solution + '/' + prj.project;
   }
 };
