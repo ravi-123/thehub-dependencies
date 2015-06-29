@@ -1,11 +1,11 @@
 {
-  "name": "thehub-deploy",
-  "version": "0.0.1",
-  "description": "Creates The deployment folder",
-  "homepage": "https://github.com/cyb-ashishku/thehub-deploy",
+  "name": "thehub-dependencies",
+  "version": "0.0.2",
+  "description": "Copies sependencies and fixes refrence path",
+  "homepage": "https://github.com/cyb-ashishku/thehub-dependencies",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cyb-ashishku/thehub-deploy.git"
+    "url": "https://github.com/cyb-ashishku/thehub-dependencies.git"
   },
   "author": {
     "name": "Ashish Kumar",
