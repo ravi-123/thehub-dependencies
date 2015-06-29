@@ -19,8 +19,9 @@ module.exports = function (grunt) {
     var config = {
       copy: {}
     };
-    var copyTask = 'copy_dependencies-' + this.target;
-    var replaceTask = 'replace_dependencies_refrences-' + this.target;
+    var target = this.target || 'dev';
+    var copyTask = 'copy_dependencies-' + target;
+    var replaceTask = 'replace_dependencies_refrences-' + target;
     var copyFiles = [];
     var projects = {};
 
@@ -32,7 +33,7 @@ module.exports = function (grunt) {
     var ignoreFileExtRegex = /\.(?:csproj|vspscc|config)$/;
 
     _.each(options.projects, function (prj) {
-      readDepndencies(projects, prj, this.target);
+      readDepndencies(projects, prj, target);
     });
 
     _.each(_.keys(projects), function (prj) {
