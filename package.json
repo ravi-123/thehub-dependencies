@@ -1,6 +1,6 @@
 {
   "name": "thehub-dependencies",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Copies sependencies and fixes refrence path",
   "homepage": "https://github.com/cyb-ashishku/thehub-dependencies",
   "repository": {
