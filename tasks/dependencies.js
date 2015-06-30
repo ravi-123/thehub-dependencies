@@ -40,7 +40,7 @@ module.exports = function (grunt) {
         cwd: projectDeployPath(prj),
         src: '**',
         dot: true,
-        dest: path.join('dependencies/', prj.project)
+        dest: path.join('dependencies/', prj.solution, prj.project)
       });
     });
 
