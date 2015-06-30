@@ -49,11 +49,11 @@ module.exports = function (grunt) {
     };
 
     config.replace[replaceTask] = {
-      src: ['deploy/**/*.ts'],
+      src: ['dependencies/**/*.ts'],
       overwrite: true,
       replacements: [{
         from: /(\/\/\/ <reference path="[.\/]*?)\/dependencies\//g,
-        to: '$1/../'
+        to: '$1/'
       }]
     };
 
