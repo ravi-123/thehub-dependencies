@@ -81,10 +81,12 @@ module.exports = function (grunt) {
   }
 
   function projectDeployPath(prj) {
-    return path.join('..', '..', prj.solution, prj.project, 'deploy', prj.project);
+      var parentLevel = prj.for === 'core' ? path.join('..', '..') : path.join('..', '..', '..');
+      return path.join(parentLevel, prj.solution, prj.project, 'deploy', prj.project);
   }
-  function projectDependenciesPath(prj, target) {
-    return path.join('..', '..', prj.solution, prj.project, 'grunt', target, 'dependencies.json');
+  function projectDependenciesPath(prj, target, parentLevel) {
+      var parentLevel = prj.for === 'core' ? path.join('..', '..') : path.join('..', '..', '..');
+      return path.join(parentLevel, prj.solution, prj.project, 'grunt', target, 'dependencies.json');
   }
   function projectKey(projects, prj) {
     return  prj.solution + '/' + prj.project;
