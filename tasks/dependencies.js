@@ -84,7 +84,7 @@ module.exports = function (grunt) {
       var parentLevel = prj.for === 'core' ? path.join('..', '..') : path.join('..', '..', '..');
       return path.join(parentLevel, prj.solution, prj.project, 'deploy', prj.project);
   }
-  function projectDependenciesPath(prj, target, parentLevel) {
+  function projectDependenciesPath(prj, target) {
       var parentLevel = prj.for === 'core' ? path.join('..', '..') : path.join('..', '..', '..');
       return path.join(parentLevel, prj.solution, prj.project, 'grunt', target, 'dependencies.json');
   }
